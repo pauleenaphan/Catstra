@@ -5,7 +5,7 @@ export default function AgentCard({ agentName, about, image }: { agentName: stri
   const navigate = useNavigate();
   
   return (
-    <div className="flex flex-col items-center bg-yellow-200 border-4 rounded-lg w-1/3 min-h-150 h-fit gap-8 p-8">
+    <div className="flex flex-col items-center bg-yellow-200 border-4 rounded-lg md:w-1/3 min-h-150 h-fit md:gap-8 gap-4 p-8">
       <h1 className="capitalize text-5xl font-bold">{agentName}</h1>
       {image && (
         <img 

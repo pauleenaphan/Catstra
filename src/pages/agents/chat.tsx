@@ -143,7 +143,7 @@ export default function Chat({ agentName }: ChatProps) {
         </div>
       </div>
       
-      <div className="w-1/2 h-3/4 flex flex-col border-4 rounded-lg shadow-lg bg-white">
+      <div className="md:w-1/2 w-4/5 h-3/4 flex flex-col border-4 rounded-lg shadow-lg bg-white">
       {/* Header */}
       <div className="border-b p-4 bg-yellow-200">
         <div className="flex justify-between items-center mb-12">
@@ -222,10 +222,10 @@ export default function Chat({ agentName }: ChatProps) {
               </div>
             </div>
           </div>
-                   )}
-                   {/* Invisible element to scroll to */}
-                   <div ref={messagesEndRef} />
-                 </div>
+          )}
+        {/* Invisible element to scroll to */}
+        <div ref={messagesEndRef} />
+      </div>
       
       {/* Input Area */}
       <div className="border-t p-4 bg-yellow-200">
@@ -242,7 +242,7 @@ export default function Chat({ agentName }: ChatProps) {
           <button 
             onClick={sendMessage}
             disabled={isLoading}
-            className="px-6 py-3 border-4 border-black bg-green-900 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400"
+            className="px-6 py-3 border-4 border-black bg-green-900 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-700"
           >
             {isLoading ? 'Sending...' : 'Send'}
           </button>

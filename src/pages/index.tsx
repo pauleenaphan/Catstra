@@ -8,7 +8,7 @@ export default function Home() {
     <div className="bg-yellow-100 h-screen flex items-center flex-col gap-12 p-12">
         <h1 className="text-8xl font-bold"> Catstra </h1>
         <h2 className="text-4xl text-center">Choose Your Agent</h2>
-        <div className="flex gap-4 h-100">
+        <div className="flex gap-4 h-100 flex-col md:flex-row">
           <AgentCard 
             agentName="sunny" 
             about="A friendly and playful cat who loves to play with toys and chase after birds." 
