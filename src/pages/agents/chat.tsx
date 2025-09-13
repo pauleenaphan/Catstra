@@ -97,52 +97,68 @@ export default function Chat({ agentName }: ChatProps) {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px', margin: 'auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <button onClick={() => navigate('/')} style={{ padding: '10px 15px', cursor: 'pointer' }}>
-          ← Back to Home
-        </button>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <button onClick={clearChat} style={{ padding: '10px 15px', cursor: 'pointer', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '5px' }}>
-            Clear Chat
-          </button>
-          <button onClick={resetUser} style={{ padding: '10px 15px', cursor: 'pointer', backgroundColor: '#6c757d', color: 'white', border: 'none', borderRadius: '5px' }}>
-            Reset User
-          </button>
-        </div>
-      </div>
-      
-      <h1>🤖 Chat with {agentName}</h1>
-      
-      <div style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '15px', minHeight: '300px', marginBottom: '20px', backgroundColor: '#f9f9f9', overflowY: 'auto' }}>
-        {messages.map((message) => (
-          <div key={message.id} style={{ marginBottom: '10px' }}>
-            <strong>{message.role === 'user' ? 'You' : agentName}:</strong> 
-            <div style={{ whiteSpace: 'pre-wrap' }}>
-              {message.content}
+    <div>
+      <div>
+        <div>
+          <div>
+            <button 
+              onClick={() => navigate('/')} 
+            >
+              ← Back to Home
+            </button>
+            <div>
+              <button 
+                onClick={clearChat} 
+              >
+                Clear Chat
+              </button>
+              <button 
+                onClick={resetUser} 
+              >
+                Reset User
+              </button>
             </div>
           </div>
-        ))}
-        {isLoading && <p>{agentName} is typing... 🤖</p>}
-      </div>
-      
-      <div style={{ display: 'flex', gap: '10px' }}>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => { if (e.key === 'Enter') sendMessage(); }}
-          placeholder={`Type a message to ${agentName}...`}
-          style={{ flex: 1, padding: '10px', borderRadius: '5px', border: '1px solid #ddd' }}
-          disabled={isLoading}
-        />
-        <button 
-          onClick={sendMessage}
-          disabled={isLoading}
-          style={{ padding: '10px 20px', borderRadius: '5px', border: 'none', backgroundColor: '#007bff', color: 'white', cursor: 'pointer' }}
-        >
-          {isLoading ? 'Sending...' : 'Send'}
-        </button>
+          
+          <h1>
+            🤖 Chat with {agentName}
+          </h1>
+          
+          <div>
+            {messages.map((message) => (
+              <div key={message.id}>
+                <strong>
+                  {message.role === 'user' ? 'You' : agentName}:
+                </strong> 
+                <div>
+                  {message.content}
+                </div>
+              </div>
+            ))}
+            {isLoading && (
+              <div>
+                {agentName} is typing... 🤖
+              </div>
+            )}
+          </div>
+          
+          <div>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={(e) => { if (e.key === 'Enter') sendMessage(); }}
+              placeholder={`Type a message to ${agentName}...`}
+              disabled={isLoading}
+            />
+            <button 
+              onClick={sendMessage}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Sending...' : 'Send'}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

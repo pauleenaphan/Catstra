@@ -1,18 +1,27 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import AgentCard from '../components/agentCard';
 
 export default function Home() {
-  const navigate = useNavigate();
 
   return(
-    <div>
-      <h1>choose your agent</h1>
-      <p>Sunny</p>
-      <button onClick={() => { navigate('/chat', { state: { agentName: 'sunny' } }) }}>talk to sunny</button>
-      <p>Luna</p>
-      <button onClick={() => { navigate('/chat', { state: { agentName: 'luna' } }) }}>talk to luna</button>
-      <p>Stella</p>
-      <button onClick={() => { navigate('/chat', { state: { agentName: 'stella' } }) }}>talk to stella</button>
+    <div className="bg-yellow-100 h-screen flex items-center flex-col gap-12 p-12">
+        <h1 className="text-8xl font-bold"> Catstra </h1>
+        <h2 className="text-4xl text-center">Choose Your Agent</h2>
+        <div className="flex gap-4 h-100">
+          <AgentCard 
+            agentName="sunny" 
+            about="A friendly and playful cat who loves to play with toys and chase after birds." 
+            image="/images/sunny.png"/>
+          <AgentCard 
+            agentName="luna" 
+            about="A mysterious and sleek cat who loves to hunt and lounge." 
+            image="/images/luna.png"/>
+          <AgentCard 
+            agentName="stella" 
+            about="A super chill and laid back cat who loves to cuddle and do nothing." 
+            image="/images/stella.png"/>
+        </div>
     </div>
   )
 }
