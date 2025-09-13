@@ -21,6 +21,11 @@ export default function Chat({ agentName }: ChatProps) {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+
+  // Set dynamic page title based on agent
+  useEffect(() => {
+    document.title = `Catstra | Chatting with ${agentName.charAt(0).toUpperCase() + agentName.slice(1)}`;
+  }, [agentName]);
   
   // Generate a consistent thread ID for this session
   const [threadId] = useState(() => {
@@ -41,6 +46,7 @@ export default function Chat({ agentName }: ChatProps) {
     setInput('');
     setIsLoading(true);
 
+    // Send the message to the agent by making a POST request to the API and cleaning the response text
     try {
       // Send only the current message with user ID - let the agent's memory handle the context
       const res = await fetch(`http://localhost:4112/api/agents/${agentName}/stream`, {
@@ -57,11 +63,12 @@ export default function Chat({ agentName }: ChatProps) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
       
-      // Handle streaming response
+      // Get the reader and decoder for the response
       const reader = res.body?.getReader();
       const decoder = new TextDecoder();
       let responseText = '';
       
+      // Handle streaming response for OpenAI format
       if (reader) {
         while (true) {
           const { done, value } = await reader.read();
@@ -86,6 +93,7 @@ export default function Chat({ agentName }: ChatProps) {
         .replace(/\\"/g, '"')   // Convert literal \" to actual quotes
         .trim();
       
+      // Add the bot message to the messages array
       const botMessage = { id: (Date.now() + 1).toString(), role: 'assistant', content: cleanResponse || 'Meow! Something went wrong! 😿' };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {

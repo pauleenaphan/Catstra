@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import AgentCard from '../components/agentCard';
 
 export default function Home() {
+  useEffect(() => {
+    document.title = 'Catstra | Choose Your Agent';
+  }, []);
 
   return(
     <div className="bg-yellow-100 h-screen flex items-center flex-col gap-12 p-12">
         <h1 className="text-8xl font-bold"> Catstra </h1>
-        <h2 className="text-4xl text-center">Choose Your Agent</h2>
+        <h2 className="text-4xl text-center">Choose a Cat to Chat With</h2>
         <div className="flex gap-4 h-100 flex-col md:flex-row">
           <AgentCard 
             agentName="sunny" 
