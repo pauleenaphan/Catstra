@@ -7,6 +7,7 @@
     "dev": "mastra dev",
     "dev:frontend": "vite",
     "build": "mastra build",
+    "build:frontend": "vite build",
     "start": "mastra start"
   },
   "keywords": [],
